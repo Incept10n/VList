@@ -1,0 +1,87 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  position:absolute;
+
+  height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .info {
+  padding: 30px;
+
+  border: 5px solid #1BB275;
+  /* border-radius: 30%; */
+  border-radius: 50px;
+}
+
+.container .info #heading-message {
+  color: #1BB275;
+  text-align: center;
+  font-size: 2.5em;
+}
+
+.container .info form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container .info .text {
+  margin-bottom: 15px;
+}
+
+.container .info .text {
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.container .info .input {
+  padding: 5px 10px;
+  font-size: 1.3em;
+
+  border: none;
+  outline: none;
+  /* border-bottom: 1px solid transparent; */
+  border-bottom: 2px solid #1BB275;
+}
+
+.container .info .input:hover {
+  border-bottom: 2px solid green;
+}
+
+.container .info .input:focus {
+  outline: none;
+  border-bottom: 2px solid green;
+}
+
+.container .info input[type=submit] {
+  margin-top: 50px;
+
+  width: 80%;
+
+  padding: 10px;
+
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2em;
+  background-color: #1BB275;
+
+  border: 2px solid #1BB275;
+  border-radius: 50px;
+}
+
+.container .info input[type=submit]:hover {
+  background-color: rgb(173, 216, 230);
+  border-color: rgb(50, 100, 150);
+  color: rgb(75, 75, 75);
+
+  cursor: pointer;
+}

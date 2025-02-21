@@ -1,0 +1,50 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.header-profile {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.5em;
+
+  margin-top: 20px;
+}
+
+.header-profile #user-name {
+  margin-right: 20px;
+}
+
+.header-profile ion-icon {
+  margin-right: 10px;
+  border: 5px solid transparent;
+}
+
+.header-profile ion-icon:hover {
+  background-color: grey;
+
+  border: 5px solid grey;
+  border-radius: 20px;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+.sign-out-btn {
+  margin-right: 30px;
+
+  color: white;
+  font-size: .7em;
+  font-weight: 800;
+
+  background-color: #1BB275;
+  border: 1px solid transparent;
+  border-radius: 30px;
+}
+
+.sign-out-btn:hover {
+  background-color: rgb(173, 216, 230);
+  border-color: rgb(50, 100, 150);
+  color: rgb(75, 75, 75);
+  cursor: pointer;
+}

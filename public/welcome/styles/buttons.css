@@ -1,0 +1,27 @@
+.input {
+  padding: 0px 550px;
+  display: flex;
+  justify-content: space-around;
+
+
+  margin-top: 170px;
+}
+
+.input .button {
+  padding: 10px;
+  
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2em;
+  background-color: #1BB275;
+
+  border: 2px solid #1BB275;
+  border-radius: 50px;
+}
+
+.input .button:hover {
+  background-color: rgb(173, 216, 230);
+  border-color: rgb(50, 100, 150);
+  color: rgb(75, 75, 75);
+}
