@@ -1,14 +1,20 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 
-const connectUrl =
-  `mongodb+srv://viox:M6674387Dm@vlisttestdatabase.sqmp0fr.mongodb.net/app-data?retryWrites=true&w=majority`;
+const connectUrl = process.env.MONGO_URL;
+// const connectUrl = MONGO_URL;
 
 main().catch((err) => {console.log(err);});
 
 async function main() {
-  await mongoose.connect(connectUrl);
+  try {
+    await mongoose.connect(connectUrl);
+    console.log("MongoDB Connected Successfully");
+  } catch (err) {
+    console.error("MongoDB Connection Error:", err);
+  }
 }
 
 const bodyParser = require('body-parser');
