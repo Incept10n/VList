@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  front-back
+  namespace: default
+  labels:
+    app:  front-back
+spec:
+  selector:
+    matchLabels:
+      app: front-back
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  front-back
+    spec:
+      containers:
+      - name:  front-back
+        image: incept1on999/vlist:back-and-front
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: MONGO_URL 
+          valueFrom:
+            secretKeyRef:
+              name: front-back-secret
+              key: MONGO_URL
+        ports:
+        - containerPort: 3000 
+          name:  front-back
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-back-service
+  namespace: default
+spec:
+  selector:
+    app: front-back
+  type: NodePort
+  ports:
+  - name: front-back-service
+    protocol: TCP
+    port: 3000
+    targetPort: 3000 
+    nodePort: 30000
