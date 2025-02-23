@@ -1,0 +1,35 @@
+- name: Remove everything in the folder
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled
+    state: absent
+
+- name: Recreate the empty folder
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled
+    state: directory
+    mode: '0755'
+
+- name: Add nginx configuration
+  ansible.builtin.copy:
+    src: vlist.conf
+    dest: /etc/nginx/sites-available/
+    owner: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: Enable website configuration
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/vlist.conf
+    dest: /etc/nginx/sites-enabled/vlist.conf
+    state: link
+
+- name: Reload nginx to apply the changes
+  ansible.builtin.systemd:
+    name: nginx
+    state: reloaded
+    enabled: true
+
+- name: Ensure nginx is running
+  ansible.builtin.systemd:
+    name: nginx
+    state: started
+    enabled: true

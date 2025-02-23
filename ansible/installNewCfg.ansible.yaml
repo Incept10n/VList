@@ -1,0 +1,11 @@
+- name: Check if Nginx is istalled, disable all configs and enable new one
+  hosts: load
+  become: true
+  tasks:
+    - name: Ensure nginx is installed
+      ansible.builtin.include_role:
+        name: installNginx
+
+    - name: Set new configFile and enable it
+      ansible.builtin.include_role:
+        name: addNewCfgNginx

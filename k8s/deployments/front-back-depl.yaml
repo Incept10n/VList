@@ -23,6 +23,7 @@ spec:
       containers:
       - name:  front-back
         image: incept1on999/vlist:back-and-front
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: 100m

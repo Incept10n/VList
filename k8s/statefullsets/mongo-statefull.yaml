@@ -14,9 +14,14 @@ spec:
       labels:
         app: mongo # has to match .spec.selector.matchLabels
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
         - name: mongo
           image: mongo
+          imagePullPolicy: Always
           envFrom:
             - configMapRef:
                 name: mongo-config 
@@ -27,7 +32,7 @@ spec:
           - name: mongo
             mountPath: /data/db
       volumes:
-        - name: mypd
+        - name: mongo
           persistentVolumeClaim:
             claimName: mongo-pvc
 ---
@@ -40,6 +45,7 @@ spec:
   selector:
     app: mongo
   type: ClusterIP
+  clusterIP: None
   ports:
   - name: mongo-service
     protocol: TCP
