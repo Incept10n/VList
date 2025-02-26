@@ -9,7 +9,9 @@ spec:
   storageClassName: ""
   volumeMode: Filesystem
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 5Gi
+
+# This PVC is not needed because of dynamic provisioning

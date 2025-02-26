@@ -7,8 +7,8 @@ spec:
   selector:
     matchLabels:
       app: mongo # has to match .spec.template.metadata.labels
-  serviceName: "mongo"
-  replicas: 1 # by default is 1
+  serviceName: "mongo-service"
+  replicas: 3 # by default is 1
   template:
     metadata:
       labels:
@@ -21,6 +21,11 @@ spec:
       containers:
         - name: mongo
           image: mongo
+          command:
+          - mongod
+          - "--replSet"
+          - rs0
+          - "--bind_ip_all"
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -31,10 +36,17 @@ spec:
           volumeMounts:
           - name: mongo
             mountPath: /data/db
-      volumes:
-        - name: mongo
-          persistentVolumeClaim:
-            claimName: mongo-pvc
+  volumeClaimTemplates:  
+    - metadata:
+        name: mongo  
+      spec:
+        accessModes:
+          - ReadWriteMany 
+        resources:
+          requests:
+            storage: 3Gi
+        storageClassName: ""  
+        volumeMode: Filesystem
 ---
 apiVersion: v1
 kind: Service
